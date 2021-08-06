@@ -26,7 +26,7 @@ func (d *Schedule) Insert(start time.Time, end time.Time) error {
 
 	var id int
 
-	err := d.db.QueryRow(q, start, end).Scan(&id)
+	err := d.db.QueryRow(q, start.Format(time.RFC3339), end.Format(time.RFC3339)).Scan(&id)
 
 	log.Printf("Inserted row with id %d", id)
 

@@ -13,7 +13,6 @@ func Connect(c *config.Config) (*sql.DB, error) {
 	str := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", c.DatabaseUser, c.DatabasePassword, c.DatabaseHost, c.DatabasePort, c.DatabaseName)
 	db, err := sql.Open("postgres", str)
 
-	log.Print(str)
 	if err != nil {
 		log.Print(err)
 	}

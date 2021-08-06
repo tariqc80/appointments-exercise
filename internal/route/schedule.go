@@ -11,6 +11,7 @@ import (
 	"github.com/tariqc80/appointments-exercise/internal/data"
 )
 
+
 // ParseTimeslot middleware to set start and end times from request.
 func ParseTimeslot(c *gin.Context) {
 	log.Print("Parsing timeslot request parameters")

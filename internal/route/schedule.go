@@ -27,6 +27,13 @@ func ParseTimeslot(c *gin.Context) {
 		return
 	}
 
+	// verify the date is in the future
+	now := time.Now()
+	if startDate.Before(now) {
+		c.AbortWithStatusJSON(400, gin.H{"message": "Appointment start date is in the past"})
+		return
+	}
+
 	durationParam := c.PostForm("duration")
 	duration, err := strconv.Atoi(durationParam)
 
@@ -34,6 +41,11 @@ func ParseTimeslot(c *gin.Context) {
 		message := fmt.Sprintf("Error parsing 'duration' of value '%s'", durationParam)
 		c.AbortWithStatusJSON(400, gin.H{"message": message})
 		return
+	}
+
+	// verify duration is positive
+	if duration <= 0 {
+		c.AbortWithStatusJSON(400, gin.H{"message": "duration must be greater than 0"})
 	}
 
 	log.Print("Request param 'duration': ", duration)

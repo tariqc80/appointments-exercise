@@ -16,14 +16,14 @@ Docker Version 20+
 
 ## Endpoints
 
-`POST /schedule/create`
-`POST /schedule/available`
-`POST /schedule/cancel`
+- `POST /schedule/create`
+- `POST /schedule/available`
+- `POST /schedule/cancel`
 
 all endpoints take the same two parameters in application/x-www-form-urlencoded
 
-`start` - datetime in RFC3339 format `2021-08-11T10:00:00Z`
-`duration` - integer
+- `start` - datetime in RFC3339 format `2021-08-11T10:00:00Z`
+- `duration` - integer
 
 
 ## Configure and run

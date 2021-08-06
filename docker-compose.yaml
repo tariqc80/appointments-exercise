@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  app:
+    image: golang:latest
+    volumes:
+      - .:/go/src/app
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: postgres
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgrespassword
+    working_dir: "/go/src/app"
+    command: "go run cmd/available/main.go"
+    links:
+      - db
+  db:
+    image: postgres:13-buster
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+volumes:
+  db_data:
